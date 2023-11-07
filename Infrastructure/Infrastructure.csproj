@@ -5,6 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20231107173257_Edit_Contact_Table.cs" />
+    <Compile Remove="Migrations\20231107173257_Edit_Contact_Table.Designer.cs" />
+    <Compile Remove="Migrations\20231107173412_Drop_Contact_Table.cs" />
+    <Compile Remove="Migrations\20231107173412_Drop_Contact_Table.Designer.cs" />
+    <Compile Remove="Migrations\20231107173445_Drop_Contact_Table.cs" />
+    <Compile Remove="Migrations\20231107173445_Drop_Contact_Table.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.0.0">
       <PrivateAssets>all</PrivateAssets>
