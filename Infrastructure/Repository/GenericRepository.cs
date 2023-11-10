@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Infrastructure.Repository
@@ -21,6 +22,7 @@ namespace Infrastructure.Repository
         {
             try
             {
+                table.Add(entity);
                 return true;
             }
             catch (Exception ex)
@@ -31,22 +33,44 @@ namespace Infrastructure.Repository
 
         public bool Delete(object id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var entity = table.Find(id);
+
+                if (entity == null)
+                    return false;
+
+                table.Remove(entity);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
 
         public IEnumerable<T> GetAll()
         {
-            throw new NotImplementedException();
+            return table.ToList();
         }
 
         public T GetById(object id)
         {
-            throw new NotImplementedException();
+            return table.Find(id);
         }
 
         public bool Update(T entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                table.Attach(entity);
+                context.Entry(entity).State = EntityState.Modified;
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
     }
 }
