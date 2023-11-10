@@ -9,10 +9,10 @@ namespace Infrastructure.UnitOfWork
 {
     public class UnitOfWork<T> : IUnitOfWork<T> where T:class
     {
-        private readonly DbContext context;
+        private readonly ProtfolioContext context;
         private IGeneric<T> _entity;
 
-        public UnitOfWork(DbContext context)
+        public UnitOfWork(ProtfolioContext context)
         {
             this.context = context;
         }

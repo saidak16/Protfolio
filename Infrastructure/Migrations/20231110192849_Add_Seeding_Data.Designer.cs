@@ -4,14 +4,16 @@ using Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(ProtfolioContext))]
-    partial class ProtfolioContextModelSnapshot : ModelSnapshot
+    [Migration("20231110192849_Add_Seeding_Data")]
+    partial class Add_Seeding_Data
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -23,8 +25,7 @@ namespace Infrastructure.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasDefaultValueSql("NEWID()");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
@@ -72,7 +73,7 @@ namespace Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("716b1729-3f66-449b-8b52-6ab05ff3c3cc"),
+                            Id = new Guid("c810ae61-bdee-4f77-80ce-87cc56d170a6"),
                             Address = "Khartoum - sudan",
                             Avatar = "avatar.jpg",
                             FullName = "Ahmed Khaojaly Ahmed Ali",
