@@ -1,0 +1,62 @@
+﻿@using Web.Models
+@model IEnumerable<Core.Entities.ProtfolioItem>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+
+     Pager pager = new Pager();
+
+    int pageNo = 0;
+
+    if(ViewBag.Pager != null)
+    {
+        pager = ViewBag.Pager;
+        pageNo = pager.CurrentPage;
+    }
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-outline-success">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProjectName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProjectImage)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProjectName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+@*                @Html.DisplayFor(modelItem => item.ProjectImage)*@
+              <img src="../img/portfolio/@item.ProjectImage" style="height:60px; width:60px; border-radius:25%" alt="">
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new {  id=item.Id  }, new { @class="btn btn-outline-warning"}) |
+                @Html.ActionLink("Details", "Details", new {  id=item.Id  }, new { @class="btn btn-outline-info"}) |
+                @Html.ActionLink("Delete", "Delete", new {  id=item.Id  }, new { @class="btn btn-outline-danger"})
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<br /><br />
+<partial name="_Pager" model="@pager" />
