@@ -51,6 +51,7 @@ namespace Web
             
 
             app.UseStaticFiles();
+
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>

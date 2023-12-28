@@ -2,6 +2,7 @@
 using Core.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Linq;
 using Web.Models;
 
@@ -19,27 +20,44 @@ namespace Web.Controllers
         // GET: ProtfolioItemsController
         public ActionResult Index(int pg = 1)
         {
-            var result = protfolio.Entity.GetAll().ToList();
+            try
+            {
+                var result = protfolio.Entity.GetAll().ToList();
 
-            const int pageSize = 5;
-            if (pg < 1)
-                pg = 1;
+                const int pageSize = 5;
+                if (pg < 1)
+                    pg = 1;
 
-            int recsCount = result.Count;
-            var pager = new Pager(recsCount, pg, pageSize);
-            int recSkip = (pg - 1) * pageSize;
+                int recsCount = result.Count;
+                var pager = new Pager(recsCount, pg, pageSize);
+                int recSkip = (pg - 1) * pageSize;
 
-            var data = result.Skip(recSkip).Take(pager.PageSize).ToList();
+                var data = result.Skip(recSkip).Take(pager.PageSize).ToList();
 
-            this.ViewBag.Pager = pager;
+                this.ViewBag.Pager = pager;
 
-            return View(data);
+                return View(data);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
 
         // GET: ProtfolioItemsController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(Guid id)
         {
-            return View();
+            try
+            {
+                var result = protfolio.Entity.GetById(id);
+
+                return View(result);
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
         }
 
         // GET: ProtfolioItemsController/Create
@@ -64,9 +82,19 @@ namespace Web.Controllers
         }
 
         // GET: ProtfolioItemsController/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(Guid id)
         {
-            return View();
+            try
+            {
+                var result = protfolio.Entity.GetById(id);
+
+                return View(result);
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
         }
 
         // POST: ProtfolioItemsController/Edit/5

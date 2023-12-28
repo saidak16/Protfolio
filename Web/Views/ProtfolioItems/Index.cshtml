@@ -19,7 +19,7 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create" class="btn btn-outline-success">Create New</a>
+    <a asp-action="Create" class="btn btn-outline-success">New Project</a>
 </p>
 <table class="table">
     <thead>
@@ -50,9 +50,9 @@
               <img src="../img/portfolio/@item.ProjectImage" style="height:60px; width:60px; border-radius:25%" alt="">
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new {  id=item.Id  }, new { @class="btn btn-outline-warning"}) |
-                @Html.ActionLink("Details", "Details", new {  id=item.Id  }, new { @class="btn btn-outline-info"}) |
-                @Html.ActionLink("Delete", "Delete", new {  id=item.Id  }, new { @class="btn btn-outline-danger"})
+                @Html.ActionLink("", "Edit", new {  id=item.Id  }, new { @class="fas fa-edit"}) |
+                @Html.ActionLink("", "Details", new {  id=item.Id  }, new { @class="fas fa-eye"}) |
+                @Html.ActionLink("", "Delete", new {  id=item.Id  }, new { @class="fas fa-trash"})
             </td>
         </tr>
 }
